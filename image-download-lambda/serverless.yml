@@ -23,6 +23,7 @@ plugins:
 custom:
   pythonRequirements:
     dockerizePip: false
+    # pythonBin: /Users/onz/.pyenv/versions/venv/bin/python
 
 provider:
   name: aws
@@ -71,7 +72,9 @@ provider:
 functions:
   image-download-lambda:
     handler: src/downloading.download_image
-    timeout: 300
+    timeout: 30
+    events:
+      - sqs: arn:aws:sqs:ap-northeast-2:764152087623:onsuk-sqs
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
